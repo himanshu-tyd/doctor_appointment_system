@@ -13,7 +13,7 @@ const userSchema=new mongoose.Schema({
         require:true,
         type:Number
     },
-    profession:{
+    work:{
         require:true,
         type:String
     },
