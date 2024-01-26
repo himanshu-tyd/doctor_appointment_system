@@ -1,8 +1,8 @@
 "use strict";
 
-var mongoose = require('mongoose');
+var mongoose = require("mongoose");
 
-var bcrypt = require('bcryptjs');
+var bcrypt = require("bcryptjs");
 
 var userSchema = new mongoose.Schema({
   name: {
@@ -31,12 +31,12 @@ var userSchema = new mongoose.Schema({
   }
 }); //Here we are Hashing password
 
-userSchema.pre('save', function _callee(next) {
+userSchema.pre("save", function _callee(next) {
   return regeneratorRuntime.async(function _callee$(_context) {
     while (1) {
       switch (_context.prev = _context.next) {
         case 0:
-          if (!this.isModified('password')) {
+          if (!this.isModified("password")) {
             _context.next = 7;
             break;
           }
@@ -62,5 +62,5 @@ userSchema.pre('save', function _callee(next) {
     }
   }, null, this);
 });
-var User = mongoose.model('USERS', userSchema);
+var User = mongoose.model("USERS", userSchema);
 module.exports = User;
