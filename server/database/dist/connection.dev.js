@@ -1,12 +1,14 @@
 "use strict";
 
-var mongoose = require("mongoose");
+var mongoose = require('mongoose');
+
+require('dotenv').config(); // Load environment variables
+
 
 var DB = process.env.DATABASE;
 
-var databaseConnection = function databaseConnection() {
-  var connect;
-  return regeneratorRuntime.async(function databaseConnection$(_context) {
+var connectToDatabase = function connectToDatabase() {
+  return regeneratorRuntime.async(function connectToDatabase$(_context) {
     while (1) {
       switch (_context.prev = _context.next) {
         case 0:
@@ -15,24 +17,22 @@ var databaseConnection = function databaseConnection() {
           return regeneratorRuntime.awrap(mongoose.connect(DB));
 
         case 3:
-          connect = _context.sent;
-
-          if (connect) {
-            console.log("Connection Successfull");
-          }
-
-          _context.next = 10;
+          console.log('Connection successful');
+          _context.next = 9;
           break;
 
-        case 7:
-          _context.prev = 7;
+        case 6:
+          _context.prev = 6;
           _context.t0 = _context["catch"](0);
-          console.log("".concat(_context.t0, "Connection failed"));
+          console.error("Connection failed: ".concat(_context.t0.message));
 
-        case 10:
+        case 9:
         case "end":
           return _context.stop();
       }
     }
-  }, null, null, [[0, 7]]);
-};
+  }, null, null, [[0, 6]]);
+}; // Call the async function
+
+
+connectToDatabase();

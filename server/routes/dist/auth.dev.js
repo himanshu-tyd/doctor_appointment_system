@@ -1,21 +1,23 @@
 "use strict";
 
-var express = require('express');
+var express = require("express");
 
 var router = express.Router();
 
-var bycrpt = require('bcryptjs');
+var bycrpt = require("bcryptjs");
 
-require('../database/connection');
+var jwt = require("jsonwebtoken");
 
-var User = require('../models/user-schema');
+require("../database/connection");
 
-router.get('/', function (req, res) {
-  res.send('Hello from router js');
+var User = require("../models/user-schema");
+
+router.get("/", function (req, res) {
+  res.send("Hello from router js");
 });
 /* Using Async await */
 
-router.post('/signup', function _callee(req, res) {
+router.post("/signup", function _callee(req, res) {
   var _req$body, name, email, work, password, cpassword, userExits, user, userSave;
 
   return regeneratorRuntime.async(function _callee$(_context) {
@@ -89,8 +91,8 @@ router.post('/signup', function _callee(req, res) {
   }, null, null, [[2, 14]]);
 }); // login routes
 
-router.post('/signin', function _callee2(req, res) {
-  var _req$body2, email, password, userLogin, isMatch;
+router.post("/signin", function _callee2(req, res) {
+  var _req$body2, email, password, userLogin, isMatch, token;
 
   return regeneratorRuntime.async(function _callee2$(_context2) {
     while (1) {
@@ -105,7 +107,7 @@ router.post('/signin', function _callee2(req, res) {
           }
 
           return _context2.abrupt("return", res.status(400).json({
-            message: 'Pls fill the blanks'
+            message: "Pls fill the blanks"
           }));
 
         case 4:
@@ -122,29 +124,46 @@ router.post('/signin', function _callee2(req, res) {
         case 9:
           isMatch = _context2.sent;
 
-          if (userLogin && isMatch) {
-            res.status(200).json({
-              message: 'Login Successfully'
-            });
-          } else {
-            res.status(400).json({
-              error: 'User Email and Password does not match'
-            });
+          if (!(userLogin && isMatch)) {
+            _context2.next = 19;
+            break;
           }
 
-          _context2.next = 16;
-          break;
+          _context2.next = 13;
+          return regeneratorRuntime.awrap(userLogin.generateAuthToken());
 
         case 13:
-          _context2.prev = 13;
+          token = _context2.sent;
+          console.log(token);
+          res.cookie("jwtoken", token, {
+            expires: new Date(Date.now() + 25892000000),
+            httpOnly: true
+          });
+          res.status(200).json({
+            message: "Login Successfully"
+          });
+          _context2.next = 20;
+          break;
+
+        case 19:
+          res.status(400).json({
+            error: "User Email and Password does not match"
+          });
+
+        case 20:
+          _context2.next = 25;
+          break;
+
+        case 22:
+          _context2.prev = 22;
           _context2.t0 = _context2["catch"](1);
           console.log(_context2.t0);
 
-        case 16:
+        case 25:
         case "end":
           return _context2.stop();
       }
     }
-  }, null, null, [[1, 13]]);
+  }, null, null, [[1, 22]]);
 });
 module.exports = router;
