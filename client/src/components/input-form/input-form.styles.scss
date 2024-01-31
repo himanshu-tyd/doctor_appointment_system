@@ -1,0 +1,22 @@
+.input-form-container {
+    background-image: url(../../assets/cool-background.svg);
+    background-size: cover;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+
+    &.signup-bg {
+    background-image: url(../../assets/cool-background.svg);
+    background-size: cover;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    }
+    /* Add styles for login-bg if needed */
+  }
+  

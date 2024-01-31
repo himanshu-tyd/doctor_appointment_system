@@ -1,14 +1,33 @@
-import React from 'react'
-import SingIn from '../sign-in/sign-in'
-import SignUp from '../sign-up/sign-up'
+import React, { useState } from "react";
+import LoginForm from "../login-form/login-form";
+import "./input-form.styles.scss";
+import SignUpForm from "../signup-form/signup-form";
 
-const InputForm= () => {
+const InputForm = () => {
+  const [isSignup, setSignup] = useState(false);
+
+  const toggleForm = () => {
+    setSignup(!isSignup);
+  };
+
   return (
-    <section className='head'>
-        <SingIn/>
-        <SignUp/>
-    </section>
-  )
-}
+    <>
+      <section className={`input-form-container ${isSignup ? 'signup' : 'login'}`}>
+        {isSignup ? (
+          <SignUpForm toggleForm={toggleForm} />
+        ) : (
+          <LoginForm toggleForm={toggleForm} />
+        )}
+      </section>
+    </>
+  );
+};
 
-export default InputForm
+export default InputForm;
+
+
+
+
+
+
+

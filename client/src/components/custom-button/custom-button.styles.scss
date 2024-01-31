@@ -1,0 +1,46 @@
+.custom-btn {
+  min-width: 120px;
+  width: auto;
+  height: 35px;
+  line-height: 50px;
+  padding: 10px 20px;
+  font-size: 15px;
+  background-color: white;
+  color: rgb(19, 115, 235);
+  text-transform: uppercase;
+  border: 0.5px solid rgb(19, 115, 235);
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 2px;
+  transition: 0.1s ease-out;
+
+  &:hover {
+    background-color: rgb(19, 115, 235);
+    color: #ffff;
+    border: 0.5px solid rgb(19, 115, 235);
+  }
+  &.google-sign-in {
+    background-color: #4285f4;
+    color: white;
+
+    &:hover {
+      background-color: #357ae8;
+      border: none;
+    }
+  }
+
+  &:inverted {
+    background-color: white;
+    color: black;
+    border: 1px solid black;
+
+    &:hover {
+      background-color: black;
+      color: white;
+      border: none;
+    }
+  }
+
+}

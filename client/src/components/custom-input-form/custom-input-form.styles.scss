@@ -1,0 +1,31 @@
+.group {
+  .box-container {
+    padding: 2px;
+    
+    
+
+    .input-form {
+      padding: 5px 10px;
+      background-color: white;
+      color: black;
+      border: 1px solid #787878;
+      box-sizing: border-box;
+      box-shadow: inset rgba(0, 0, 0, 0.1) -1px 1px 1px 0px;
+      border-radius: 2px; // Adjust the value as needed
+
+      &::placeholder {
+        text-align: start;
+      }
+
+      &:focus {
+        outline: none;
+        outline-color: blue; // Change to border-bottom-color to target only the bottom border
+      }
+    }
+
+    .form-label {
+      color: #4d4d4d;
+      font-weight: 400;
+    }
+  }
+}
